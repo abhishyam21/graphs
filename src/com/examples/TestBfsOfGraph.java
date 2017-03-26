@@ -3,7 +3,7 @@ package com.examples;
 import com.examples.graph.AdjacencyListGraphImpl;
 import com.examples.graph.Graph;
 
-public class Main {
+public class TestBfsOfGraph {
 
     public static void main(String[] args) {
         Graph<Integer> graph= new AdjacencyListGraphImpl<>();
