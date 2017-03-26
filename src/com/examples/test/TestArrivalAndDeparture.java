@@ -17,7 +17,7 @@ public class TestArrivalAndDeparture {
         graph.addEdge(2,3); graph.addEdge(2,4);
         graph.addEdge(3,1); graph.addEdge(3,5);
         graph.addEdge(4,5); graph.addEdge(6,7);
-        System.out.println(graph);
+      //  System.out.println(graph);
         Map<Integer, ArrivalAndDepartureTimeOfVertices.Node> integerNodeMap = graph.calculateArrivalAndDeparture();
         for (Map.Entry<Integer, ArrivalAndDepartureTimeOfVertices.Node> integerNodeEntry : integerNodeMap.entrySet()) {
             System.out.println(integerNodeEntry.getKey()+"->"+integerNodeEntry.getValue());
