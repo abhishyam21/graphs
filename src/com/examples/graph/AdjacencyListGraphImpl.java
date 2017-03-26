@@ -7,9 +7,11 @@ import java.util.*;
  */
 public class AdjacencyListGraphImpl<V> implements Graph<V>{
     Map<V,List<V>> graph;//map which stores vertex and list of  vertexes connected
+    Comparator<V> comparator;
 
-    public AdjacencyListGraphImpl() {
+    public AdjacencyListGraphImpl(Comparator<V> comparator) {
         graph = new HashMap<>();
+        this.comparator = comparator;
     }
 
     /**
@@ -24,6 +26,7 @@ public class AdjacencyListGraphImpl<V> implements Graph<V>{
             list = new ArrayList<>();
         }
         list.add(to);
+        list.sort(this.comparator);
         this.graph.put(from,list);
         //add the vertex with no edges
         if(!this.graph.containsKey(to)){
@@ -103,4 +106,5 @@ public class AdjacencyListGraphImpl<V> implements Graph<V>{
         }
         return builder.toString();
     }
+
 }

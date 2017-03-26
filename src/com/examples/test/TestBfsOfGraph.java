@@ -3,11 +3,13 @@ package com.examples.test;
 import com.examples.graph.AdjacencyListGraphImpl;
 import com.examples.graph.Graph;
 
+import java.util.Comparator;
+
 public class TestBfsOfGraph {
 
     public static void main(String[] args) {
         //Test Case 1
-        Graph<Integer> graph= new AdjacencyListGraphImpl<>();
+        Graph<Integer> graph= new AdjacencyListGraphImpl<>(Integer::compare);
         graph.addEdge(1,2); graph.addEdge(1,3); graph.addEdge(1,4);
         graph.addEdge(2,5);graph.addEdge(2,6);
         graph.addEdge(4,7); graph.addEdge(4,8);
@@ -18,7 +20,7 @@ public class TestBfsOfGraph {
         System.out.println(graph.bfs(2).toString());
         //Test Case 2
         System.out.println("-------------------------------------------------------");
-        Graph<Integer> graph1 = new AdjacencyListGraphImpl<>();
+        Graph<Integer> graph1 = new AdjacencyListGraphImpl<>(Integer::compareTo);
         graph1.addEdge(0, 1);
         graph1.addEdge(0, 2);
         graph1.addEdge(1, 2);
