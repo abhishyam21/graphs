@@ -1,13 +1,14 @@
 package com.examples.graph;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Rachana Rao on 3/25/2017.
  */
 public class AdjacencyListGraphImpl<V> implements Graph<V>{
     Map<V,List<V>> graph;//map which stores vertex and list of  vertexes connected
-    Comparator<V> comparator;
+    private Comparator<V> comparator;
 
     public AdjacencyListGraphImpl(Comparator<V> comparator) {
         graph = new HashMap<>();
@@ -82,19 +83,46 @@ public class AdjacencyListGraphImpl<V> implements Graph<V>{
     }
 
     /**
+     * Return the list containing all the vertex whose
+     * in-degree is zero
+     * @return Set<V>
+     */
+    @Override
+    public Set<V> getRootNodes() {
+        return inDegree().entrySet().stream().
+                filter(entity -> entity.getValue() == 0).map(Map.Entry::getKey).collect(Collectors.toSet());
+    }
+
+    /**
      * Create the isVisited map.
      *  IsVisited Map, contains all the vertex and each
      *  vertex is mapped with false flag, so that it indicates
      *  that particular vertex is not visited
      * @return map of vertex and false flag set for each vertex
      */
-    private Map<V, Boolean> generateIsVisitedMap() {
+      Map<V, Boolean> generateIsVisitedMap() {
         Map<V,Boolean> isVisited = new HashMap<>();
         for (Map.Entry<V,List<V>> entity : this.graph.entrySet()){
             isVisited.put(entity.getKey(),false);
         }
         return isVisited;
     }
+
+    /**
+     * Calculate the in-degree of the each node in the graph
+     */
+    @Override
+    public Map<V,Integer> inDegree() {
+        Map<V,Integer> result = new HashMap<>();
+        for (V v: graph.keySet()) result.put(v, 0);       // All in-degrees are 0
+        for (V from: graph.keySet()) {
+            for (V to: graph.get(from)) {
+                result.put(to, result.get(to) + 1);           // Increment in-degree
+            }
+        }
+        return result;
+    }
+
 
     @Override
     public String toString() {
