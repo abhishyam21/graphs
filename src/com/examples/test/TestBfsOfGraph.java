@@ -1,4 +1,4 @@
-package com.examples;
+package com.examples.test;
 
 import com.examples.graph.AdjacencyListGraphImpl;
 import com.examples.graph.Graph;
@@ -15,7 +15,7 @@ public class TestBfsOfGraph {
         graph.addEdge(7,11); graph.addEdge(7,12);
         System.out.println(graph);
         System.out.println("BFS Of Graph for Test Case 1");
-        System.out.println(graph.bfs(1).toString());
+        System.out.println(graph.bfs(2).toString());
         //Test Case 2
         System.out.println("-------------------------------------------------------");
         Graph<Integer> graph1 = new AdjacencyListGraphImpl<>();

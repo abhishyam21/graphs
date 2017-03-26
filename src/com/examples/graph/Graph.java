@@ -10,4 +10,6 @@ public interface Graph<V> {
     void addEdge(V from, V to);
 
     List<V> bfs(V v);
+
+    List<V> dfs(V v);
 }

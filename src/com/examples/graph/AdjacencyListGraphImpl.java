@@ -54,6 +54,37 @@ public class AdjacencyListGraphImpl<V> implements Graph<V>{
         return bfsList;
     }
 
+    /**
+     *
+     * @param v vertex from where we need to start dfs
+     * @return list of vertexes in dfs order
+     */
+    @Override
+    public List<V> dfs(V v) {
+        Stack<V> stack = new Stack<V>();
+        stack.push(v);
+
+        List<V> dfsList = new ArrayList<V>();
+        Map<V,Boolean> isVisited = generateIsVisitedMap();
+
+        while (!stack.isEmpty()){
+            V pop = stack.pop();
+            if(!isVisited.get(pop)){
+                dfsList.add(pop);
+                stack.addAll(this.graph.get(pop));
+                isVisited.put(pop,true);
+            }
+        }
+        return dfsList;
+    }
+
+    /**
+     * Create the isVisited map.
+     *  IsVisited Map, contains all the vertex and each
+     *  vertex is mapped with false flag, so that it indicates
+     *  that particular vertex is not visited
+     * @return map of vertex and false flag set for each vertex
+     */
     private Map<V, Boolean> generateIsVisitedMap() {
         Map<V,Boolean> isVisited = new HashMap<>();
         for (Map.Entry<V,List<V>> entity : this.graph.entrySet()){
