@@ -17,19 +17,26 @@ public class RouteBetweenNodesImpl<V> extends AdjacencyListGraphImpl<V>{
         if(from == to) return route;
         List<V> adjacentList = this.graph.get(from);
         if(adjacentList.size() ==0) return route;
-        route.add(from);
         dfsUtil(adjacentList,to,route);
+        if(route.size()>0){
+            route.add(0,from);
+        }
         return route;
     }
 
-    private void dfsUtil(List<V> adjacentList, V to, ArrayList<V> route) {
-        if(adjacentList.size() == 0) return;
+    private boolean dfsUtil(List<V> adjacentList, V to, ArrayList<V> route) {
+        if (adjacentList.size() == 0) return false;
         for (V v : adjacentList) {
-            if(adjacentList.contains(v)){
-                route.add(v);
-            }else {
-                dfsUtil(this.graph.get(v),to,route);
+            if (adjacentList.contains(to)) {
+                route.add(to);
+                return true;
             }
+            route.add(v);
+            if (dfsUtil(this.graph.get(v), to, route)) {
+                return true;
+            } else route.remove(v);
         }
+
+        return false;
     }
 }

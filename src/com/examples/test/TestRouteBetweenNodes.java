@@ -14,16 +14,14 @@ public class TestRouteBetweenNodes {
     public static void main(String[] args) {
         Comparator<Integer> comparator = Integer::compare;
         System.out.println("-------------------------------------------------------");
-        RouteBetweenNodesImpl<Integer> graph1 = new RouteBetweenNodesImpl<>(comparator);
-        graph1.addEdge(0, 1);
-        graph1.addEdge(0, 2);
-        graph1.addEdge(1, 2);
-        graph1.addEdge(2, 0);
-        graph1.addEdge(2, 3);
-        graph1.addEdge(3, 3);
-        System.out.println(graph1);
+        RouteBetweenNodesImpl<Integer> graph = new RouteBetweenNodesImpl<>(comparator);
+        graph.addEdge(0,1); graph.addEdge(0,2);
+        graph.addEdge(2,3); graph.addEdge(2,4);
+        graph.addEdge(3,1); graph.addEdge(3,5);
+        graph.addEdge(4,5); graph.addEdge(6,7);
+        System.out.println(graph);
         System.out.println("Path b/w nodes");
-        ArrayList<Integer> route = graph1.routeBwNodes(0, 5);
+        ArrayList<Integer> route = graph.routeBwNodes( 0,3);
         System.out.println(route.toString());
     }
 }
