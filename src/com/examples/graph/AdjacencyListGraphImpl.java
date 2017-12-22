@@ -16,7 +16,7 @@ public class AdjacencyListGraphImpl<V> implements Graph<V>{
     }
 
     /**
-     *
+     * Add a directed edge to graph
      * @param from start of edge
      * @param to end of the edge
      */
