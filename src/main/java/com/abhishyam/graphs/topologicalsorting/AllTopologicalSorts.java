@@ -17,29 +17,29 @@ public class AllTopologicalSorts<V> {
             return result;
         }
 
-        Set<V> isVisted = new HashSet<>();
+        Set<V> isVisited = new HashSet<>();
         InDegree<V> inDegree = new InDegreeImpl<>(graph);
         Map<V, Integer> inDegreeMap = inDegree.inDegree();
         List<V> list = new ArrayList<>();
-        topSortUtil(isVisted,graph,inDegreeMap,list,result);
+        topSortUtil(isVisited,graph,inDegreeMap,list,result);
         return result;
     }
 
-    private void topSortUtil(Set<V> isVisted, Graph<V> graph, Map<V, Integer> inDegreeMap, List<V> list, List<List<V>> result) {
+    private void topSortUtil(Set<V> isVisited, Graph<V> graph, Map<V, Integer> inDegreeMap, List<V> list, List<List<V>> result) {
         boolean isTopSortFound = false;
 
         for (Map.Entry<V, List<V>> entry : graph.getGraph().entrySet()) {
             //check node with zero in-degree
-            if(inDegreeMap.get(entry.getKey()) == 0 && !isVisted.contains(entry.getKey())){
+            if(inDegreeMap.get(entry.getKey()) == 0 && !isVisited.contains(entry.getKey())){
                 for (V v : entry.getValue()) {
                     Integer counter = inDegreeMap.get(v);
                     counter--;
                     inDegreeMap.put(v,counter);
                 }
                 list.add(entry.getKey());
-                isVisted.add(entry.getKey());
-                topSortUtil(isVisted,graph,inDegreeMap,list, result);
-                isVisted.remove(entry.getKey());
+                isVisited.add(entry.getKey());
+                topSortUtil(isVisited,graph,inDegreeMap,list, result);
+                isVisited.remove(entry.getKey());
                 list.remove(list.size()-1);
 
                 for (V v : entry.getValue()) {
