@@ -12,15 +12,28 @@ import java.util.*;
  * This is another algorithm for finding
  * the topological sorting of elements.
  *
+ * This algorithm works on In-Degree of Nodes.
+ *
+ * The First node in the topological ordering will
+ * be node with In-Degree Zero. So start traversing
+ * the graph and find the node with In-Degree Zero,
+ * then add that element to result. Now reduce the
+ * In-Degree for those adjacent nodes by one.
+ * If anyone of the node is having In-Degree Zero
+ * add that node to result. Repeat till all nodes
+ * are traversed.
+ *
  * url:https://www.geeksforgeeks.org/topological-sorting-indegree-based-solution/
  */
 public class KahnsAlg<V> implements TopologicalSort<V>{
     private static final Logger log = LoggerFactory.getLogger(KahnsAlg.class);
 
     private Graph<V> graph;
+    private InDegree<V> inDegree;
 
     KahnsAlg(Graph<V> graph) {
         this.graph = graph;
+        inDegree = new InDegreeImpl<>(graph);
     }
 
     @Override
@@ -35,9 +48,9 @@ public class KahnsAlg<V> implements TopologicalSort<V>{
 
     private List<V> kahnsTopSortUti() {
 
-        InDegree<V> inDegree = new InDegreeImpl<>(graph);
         Map<V, Integer> inDegreeMap = inDegree.inDegree();
         Queue<V> queue = new LinkedList<>();
+
         //add noes with Zero In-Degree
         for (Map.Entry<V, Integer> node : inDegreeMap.entrySet()) {
             if(node.getValue() == 0) queue.add(node.getKey());

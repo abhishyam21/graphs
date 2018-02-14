@@ -1,10 +1,6 @@
 package com.abhishyam.graphs;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class TestBase {
-    public static final Logger log = LoggerFactory.getLogger(TestBase.class);
     protected static Graph<Integer> graph1 = new Graph<>();
     protected static Graph<Integer> graph2 = new Graph<>();
     protected static Graph<String> graph3 = new Graph<>();
@@ -13,6 +9,8 @@ public class TestBase {
     protected static Graph<String> graph6 = new Graph<>();
     protected static Graph<String> graph7 = new Graph<>();
     protected static Graph<Integer> graph8 = new Graph<>();
+    protected static Graph<Integer> graph9 = new Graph<>();
+
 
     protected static WeightedGraph<String> weightedGraph1 = new WeightedGraph<>();
 
@@ -71,6 +69,13 @@ public class TestBase {
         graph8.addEdge(2, 1);
         graph8.addEdge(0, 3);
         graph8.addEdge(3, 4);
+
+        graph9.addEdge(1,2);
+        graph9.addEdge(4,1);
+        graph9.addEdge(4,5);
+        graph9.addEdge(5,6);
+        graph9.addEdge(6,4);
+
 
 
         weightedGraph1.addEdge("r","t",3); weightedGraph1.addEdge("r","s",5);

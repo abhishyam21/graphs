@@ -34,7 +34,7 @@ public class DisjointSet<K> {
     public K findSet(K data){
         Node<K> node = map.get(data);
         if(node == null){
-            log.info("No data found");
+            log.warn("No data found");
             return null;
         }else {
             return findSet(node).getData();
@@ -42,12 +42,11 @@ public class DisjointSet<K> {
     }
 
     private Node<K> findSet(Node<K> node) {
-        if(node.parent == node) return node.parent;
-        return findSet(node.parent);
+        return (node.getParent() == node) ? node.getParent() :
+        findSet(node.getParent());
     }
 
     public boolean union(K data1, K data2){
-        //Check if parents of both the nodes are same
         Node<K> node1 = map.get(data1);
         Node<K> node2 = map.get(data2);
         if(node1 == null){
@@ -56,10 +55,13 @@ public class DisjointSet<K> {
         if(node2 == null){
             log.info("Null data passed for data2");return false;
         }
+
+        //Check if parents of both the nodes are same
         Node<K> parent1 = findSet(node1);
         Node<K> parent2 = findSet(node2);
         if(parent1 == parent2)
             return false;
+
         //if not check of ranks of both sets.
         //set with more rank will represents the whole set
         if(parent1.getRank() >= parent2.rank){
@@ -84,7 +86,7 @@ public class DisjointSet<K> {
             return rank;
         }
 
-        public Node<N> getParent() {
+        Node<N> getParent() {
             return parent;
         }
     }
