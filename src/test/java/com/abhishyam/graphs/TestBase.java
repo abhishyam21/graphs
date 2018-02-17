@@ -79,7 +79,7 @@ public class TestBase {
 
         //this is same as graph 5 without cycle
         graph10.addEdge(5,2); graph10.addEdge(5,0);
-        graph10.addEdge(4,0); graph10.addEdge(4,1);
+        graph10.addEdge(0,4); graph10.addEdge(4,1);
         graph10.addEdge(2,3);
         //graph10.addEdge(3,1);
 

@@ -3,6 +3,7 @@ package com.abhishyam.graphs.cycles.directed;
 import com.abhishyam.graphs.TestBase;
 import com.abhishyam.graphs.cycles.CycleInGraph;
 import com.abhishyam.graphs.cycles.undirected.CyclesInUnDirectedGraphi;
+import com.abhishyam.graphs.cycles.undirected.CyclesInUnDirectedGraphii;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -35,6 +36,34 @@ public class CycleInUnDirectedGraphTest extends TestBase {
     @Test
     public void testHasCyclesII(){
         CycleInGraph<Integer> cycleInGraph = new CyclesInUnDirectedGraphi<>();
+
+        boolean actual = cycleInGraph.hasCycle(graph10);
+        assertEquals(false,actual);
+    }
+
+    @Test
+    public void testHasCyclesIII(){
+        CycleInGraph<Integer> cycleInGraph = new CyclesInUnDirectedGraphii<>();
+
+        boolean actual = cycleInGraph.hasCycle(graph9);
+        assertEquals(true,actual);
+
+        cycleInGraph = new CyclesInUnDirectedGraphii<>();
+        actual = cycleInGraph.hasCycle(graph1);
+        assertEquals(true,actual);
+
+        cycleInGraph = new CyclesInUnDirectedGraphii<>();
+        actual = cycleInGraph.hasCycle(graph2);
+        assertEquals(true,actual);
+
+        cycleInGraph = new CyclesInUnDirectedGraphii<>();
+        actual = cycleInGraph.hasCycle(graph5);
+        assertEquals(true,actual);
+    }
+
+    @Test
+    public void testHasCyclesIV(){
+        CycleInGraph<Integer> cycleInGraph = new CyclesInUnDirectedGraphii<>();
 
         boolean actual = cycleInGraph.hasCycle(graph10);
         assertEquals(false,actual);
