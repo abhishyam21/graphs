@@ -28,9 +28,13 @@ public class CyclesInUnDirectedGraphii<V> implements CycleInGraph<V>{
     @Override
     public boolean hasCycle(Graph<V> graph) {
         for (Map.Entry<V, List<V>> entry : graph.getGraph().entrySet()) {
-
+            if(dfsUtil(entry.getKey(),graph)) return true;
         }
 
+        return false;
+    }
+
+    private boolean dfsUtil(V key, Graph<V> graph) {
         return false;
     }
 }

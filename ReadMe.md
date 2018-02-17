@@ -1,7 +1,10 @@
-This is my practice on graphs
+# graphs
 
-All the problems in this project are related to Graphs
-
-Currently the main focus is on GeeksforGeeks. below is the link for list of
-problems which i'm going to cover.
-http://www.geeksforgeeks.org/graph-data-structure-and-algorithms/
+This are list of problems taken from different 
+ websites for learning graphs.
+ 
+ In the each class i have mentioned the link to the problem statement.
+ 
+ Websites List:
+ http://www.techiedelight.com/list-of-problems/#Graphs
+ http://www.geeksforgeeks.org/data-structures/#Graph
