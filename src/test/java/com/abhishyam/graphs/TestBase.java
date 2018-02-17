@@ -10,6 +10,7 @@ public class TestBase {
     protected static Graph<String> graph7 = new Graph<>();
     protected static Graph<Integer> graph8 = new Graph<>();
     protected static Graph<Integer> graph9 = new Graph<>();
+    protected static Graph<Integer> graph10 = new Graph<>();
 
 
     protected static WeightedGraph<String> weightedGraph1 = new WeightedGraph<>();
@@ -76,6 +77,11 @@ public class TestBase {
         graph9.addEdge(5,6);
         graph9.addEdge(6,4);
 
+        //this is same as graph 5 without cycle
+        graph10.addEdge(5,2); graph10.addEdge(5,0);
+        graph10.addEdge(4,0); graph10.addEdge(4,1);
+        graph10.addEdge(2,3);
+        //graph10.addEdge(3,1);
 
 
         weightedGraph1.addEdge("r","t",3); weightedGraph1.addEdge("r","s",5);
@@ -84,5 +90,7 @@ public class TestBase {
         weightedGraph1.addEdge("x","y",-1); weightedGraph1.addEdge("x","z",1);
         weightedGraph1.addEdge("s","t",2); weightedGraph1.addEdge("s","x",6);
         weightedGraph1.addEdge("y","z",-2);
+
+
     }
 }
