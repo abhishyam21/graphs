@@ -1,19 +1,22 @@
 package com.abhishyam.graphs;
 
+import com.abhishyam.graphs.directedgraphs.DirectedGraph;
+import com.abhishyam.graphs.directedgraphs.WeightedGraphImpl;
+
 public class TestBase {
-    protected static Graph<Integer> graph1 = new Graph<>();
-    protected static Graph<Integer> graph2 = new Graph<>();
-    protected static Graph<String> graph3 = new Graph<>();
-    protected static Graph<String> graph4 = new Graph<>();
-    protected static Graph<Integer> graph5 = new Graph<>();
-    protected static Graph<String> graph6 = new Graph<>();
-    protected static Graph<String> graph7 = new Graph<>();
-    protected static Graph<Integer> graph8 = new Graph<>();
-    protected static Graph<Integer> graph9 = new Graph<>();
-    protected static Graph<Integer> graph10 = new Graph<>();
+    protected static Graph<Integer> graph1 = new DirectedGraph<>();
+    protected static Graph<Integer> graph2 = new DirectedGraph<>();
+    protected static Graph<String> graph3 = new DirectedGraph<>();
+    protected static Graph<String> graph4 = new DirectedGraph<>();
+    protected static Graph<Integer> graph5 = new DirectedGraph<>();
+    protected static Graph<String> graph6 = new DirectedGraph<>();
+    protected static Graph<String> graph7 = new DirectedGraph<>();
+    protected static Graph<Integer> graph8 = new DirectedGraph<>();
+    protected static Graph<Integer> graph9 = new DirectedGraph<>();
+    protected static Graph<Integer> graph10 = new DirectedGraph<>();
 
 
-    protected static WeightedGraph<String> weightedGraph1 = new WeightedGraph<>();
+    protected static WeightedGraph<String> weightedGraph1 = new WeightedGraphImpl<>();
 
     static {
         graph1.addEdge(0,1);graph1.addEdge(0,2);

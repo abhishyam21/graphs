@@ -1,6 +1,7 @@
 package com.abhishyam.graphs.topologicalsorting;
 
 import com.abhishyam.graphs.WeightedGraph;
+import com.abhishyam.graphs.directedgraphs.WeightedGraphImpl;
 import com.abhishyam.graphs.indegree.InDegree;
 import com.abhishyam.graphs.indegree.WeightedInDegreeImpl;
 import org.slf4j.Logger;
@@ -41,7 +42,7 @@ public class WeightedTopSort<V> implements TopologicalSort<V> {
         while (!queue.isEmpty()){
             V node = queue.poll();
             result.add(node);
-            for (WeightedGraph.AdjacentNode<V> adjacentNode : graph.getGraph().get(node)) {
+            for (WeightedGraphImpl.AdjacentNode<V> adjacentNode : graph.getGraph().get(node)) {
                 Integer count = inDegreeMap.get(adjacentNode.getV());
                 count--;
                 if(count == 0) {

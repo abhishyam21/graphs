@@ -1,6 +1,7 @@
 package com.abhishyam.graphs.paths;
 
 import com.abhishyam.graphs.WeightedGraph;
+import com.abhishyam.graphs.directedgraphs.WeightedGraphImpl;
 import com.abhishyam.graphs.topologicalsorting.TopologicalSort;
 import com.abhishyam.graphs.topologicalsorting.WeightedTopSort;
 
@@ -31,7 +32,7 @@ public class LongestPath<V> {
         Deque<V> deque = new ArrayDeque<>(topologicalSort);
         Map<V,Integer> distance = new HashMap<>();
         //except the source node, rest everything set distance to infinity
-        for (Map.Entry<V, List<WeightedGraph.AdjacentNode<V>>> entry : graph.getGraph().entrySet()) {
+        for (Map.Entry<V, List<WeightedGraphImpl.AdjacentNode<V>>> entry : graph.getGraph().entrySet()) {
             if(entry.getKey().equals(source)){
                 distance.put(entry.getKey(),0);
             }else {
@@ -43,7 +44,7 @@ public class LongestPath<V> {
         while (!deque.isEmpty()){
             V v = deque.poll();
             if(!distance.get(v).equals(inf)){
-                for (WeightedGraph.AdjacentNode<V> adjacentNode : graph.getGraph().get(v)) {
+                for (WeightedGraphImpl.AdjacentNode<V> adjacentNode : graph.getGraph().get(v)) {
                    if(distance.get(adjacentNode.getV()) < (distance.get(v)+adjacentNode.getWeight())){
                        distance.put(adjacentNode.getV(),distance.get(v)+adjacentNode.getWeight());
                    }

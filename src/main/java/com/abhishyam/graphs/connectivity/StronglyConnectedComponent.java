@@ -1,6 +1,7 @@
 package com.abhishyam.graphs.connectivity;
 
 import com.abhishyam.graphs.Graph;
+import com.abhishyam.graphs.directedgraphs.DirectedGraph;
 
 import java.util.*;
 
@@ -102,7 +103,7 @@ public class StronglyConnectedComponent<V> {
      * @return reversed graph
      */
     private Graph<V> reverseGraph() {
-        Graph<V> reverseGraph = new Graph<>();
+        Graph<V> reverseGraph = new DirectedGraph<>();
         for (Map.Entry<V, List<V>> entry : graph.getGraph().entrySet()) {
             for (V adjacentNode : entry.getValue()) {
                 reverseGraph.addEdge(adjacentNode,entry.getKey());
