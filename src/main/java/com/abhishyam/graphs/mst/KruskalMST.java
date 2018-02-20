@@ -32,7 +32,7 @@ public class KruskalMST<V> implements MST<V>{
 
     private Comparator<UnDirectedGraph.Edge<V>> edgeWeightComparator;
 
-    KruskalMST(WeightedGraph<V> graph) {
+    public KruskalMST(WeightedGraph<V> graph) {
         this.graph = graph;
        edgeWeightComparator = Comparator.comparingInt(UnDirectedGraph.Edge::getWeight);
     }
