@@ -1,13 +1,11 @@
 package com.abhishyam.graphs.directedgraphs;
 
 import com.abhishyam.graphs.WeightedGraph;
+import com.abhishyam.graphs.undirected.UnDirectedGraph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Abhishyam on 19-Feb,2018
@@ -43,6 +41,16 @@ public class WeightedGraphImpl<V> implements WeightedGraph<V>{
 
     public Map<V, List<AdjacentNode<V>>> getGraph() {
         return graph;
+    }
+
+    @Override
+    public List<UnDirectedGraph.Edge<V>> getAllEdges() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public Map<V, UnDirectedGraph.Vertex<V>> getAllVertexes() {
+        return new HashMap<>();
     }
 
     public static class AdjacentNode<V>{

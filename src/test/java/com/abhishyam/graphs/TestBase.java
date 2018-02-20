@@ -2,6 +2,7 @@ package com.abhishyam.graphs;
 
 import com.abhishyam.graphs.directedgraphs.DirectedGraph;
 import com.abhishyam.graphs.directedgraphs.WeightedGraphImpl;
+import com.abhishyam.graphs.undirected.UnDirectedGraph;
 
 public class TestBase {
     protected static Graph<Integer> graph1 = new DirectedGraph<>();
@@ -17,6 +18,8 @@ public class TestBase {
 
 
     protected static WeightedGraph<String> weightedGraph1 = new WeightedGraphImpl<>();
+    protected static WeightedGraph<Integer> weightedGraph2 = new UnDirectedGraph<>();
+    protected static WeightedGraph<Integer> weightedGraph3 = new UnDirectedGraph<>();
 
     static {
         graph1.addEdge(0,1);graph1.addEdge(0,2);
@@ -86,7 +89,9 @@ public class TestBase {
         graph10.addEdge(2,3);
         //graph10.addEdge(3,1);
 
+    }
 
+    static {
         weightedGraph1.addEdge("r","t",3); weightedGraph1.addEdge("r","s",5);
         weightedGraph1.addEdge("t","y",4); weightedGraph1.addEdge("t","z",2);
         weightedGraph1.addEdge("t","x",7);
@@ -95,5 +100,22 @@ public class TestBase {
         weightedGraph1.addEdge("y","z",-2);
 
 
+        weightedGraph2.addEdge(1, 2, 4);
+        weightedGraph2.addEdge(1, 3, 1);
+        weightedGraph2.addEdge(2, 5, 1);
+        weightedGraph2.addEdge(2, 6, 3);
+        weightedGraph2.addEdge(2, 4, 2);
+        weightedGraph2.addEdge(6, 5, 2);
+        weightedGraph2.addEdge(6, 4, 3);
+        weightedGraph2.addEdge(4, 7, 2);
+        weightedGraph2.addEdge(3, 4, 5);
+        weightedGraph2.addEdge(3, 7, 8);
+
+
+        weightedGraph3.addEdge(0, 1, 10);
+        weightedGraph3.addEdge(0, 2, 6);
+        weightedGraph3.addEdge(0, 3, 5);
+        weightedGraph3.addEdge(1, 3, 15);
+        weightedGraph3.addEdge(2, 3, 4);
     }
 }
