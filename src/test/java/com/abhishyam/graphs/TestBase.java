@@ -116,6 +116,6 @@ public class TestBase {
         weightedGraph3.addEdge(0, 2, 6);
         weightedGraph3.addEdge(0, 3, 5);
         weightedGraph3.addEdge(1, 3, 15);
-        weightedGraph3.addEdge(2, 3, 4);
+        weightedGraph3.addEdge(2, 3, 5);
     }
 }

@@ -35,10 +35,10 @@ public class UnDirectedGraph<V> implements WeightedGraph<V> {
             return vertex;
         });
 
-        Edge<V> edge = new Edge<>(vertex1,vertex2,weight);
-        allEdges.add(edge);
-        vertex1.addAdjacentVertex(edge,vertex2);
-        vertex2.addAdjacentVertex(edge,vertex1);
+        Edge<V> edge1 = new Edge<>(vertex1,vertex2,weight);
+        allEdges.add(edge1);
+        vertex1.addAdjacentVertex(edge1,vertex2);
+        vertex2.addAdjacentVertex(edge1,vertex1);
     }
 
     @Override
