@@ -7,6 +7,7 @@ import com.abhishyam.graphs.mst.MST;
 import com.abhishyam.graphs.mst.PrimsMST;
 import com.abhishyam.graphs.undirected.UnDirectedGraph;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +16,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * Created by Abhishyam on 20-Feb,2018
  */
+@Ignore
 public class MSTPerformanceTest {
 
     private static final Logger logger = LoggerFactory.getLogger(MSTPerformanceTest.class);
@@ -34,9 +37,9 @@ public class MSTPerformanceTest {
         weightedGraph2 = new UnDirectedGraph<>();
         weightedGraph3 = new UnDirectedGraph<>();
 
-        File file1 = new File(MSTPerformanceTest.class.getClassLoader().getResource("files/250EWG.txt").getFile());
-        File file2 = new File(MSTPerformanceTest.class.getClassLoader().getResource("files/1000EWG.txt").getFile());
-        File file3 = new File(MSTPerformanceTest.class.getClassLoader().getResource("files/10000EWG.txt").getFile());
+        File file1 = new File(Objects.requireNonNull(MSTPerformanceTest.class.getClassLoader().getResource("files/250EWG.txt")).getFile());
+        File file2 = new File(Objects.requireNonNull(MSTPerformanceTest.class.getClassLoader().getResource("files/1000EWG.txt")).getFile());
+        File file3 = new File(Objects.requireNonNull(MSTPerformanceTest.class.getClassLoader().getResource("files/10000EWG.txt")).getFile());
         populateGraph(weightedGraph1, file1);
         populateGraph(weightedGraph2, file2);
         populateGraph(weightedGraph3, file3);

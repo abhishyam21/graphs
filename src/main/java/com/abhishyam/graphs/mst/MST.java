@@ -1,7 +1,7 @@
 package com.abhishyam.graphs.mst;
 
 import com.abhishyam.exceptions.BadInputException;
-import com.abhishyam.graphs.undirected.UnDirectedGraph;
+import com.abhishyam.graphs.Edge;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ import java.util.List;
  * Created by Abhishyam on 20-Feb,2018
  */
 public interface MST<V> {
-    List<UnDirectedGraph.Edge<V>> minimumSpanningTree() throws BadInputException;
+    List<Edge<V>> minimumSpanningTree() throws BadInputException;
 }

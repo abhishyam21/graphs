@@ -1,8 +1,9 @@
 package com.abhishyam.graphs.mst;
 
 import com.abhishyam.exceptions.BadInputException;
+import com.abhishyam.graphs.Edge;
+import com.abhishyam.graphs.Vertex;
 import com.abhishyam.graphs.WeightedGraph;
-import com.abhishyam.graphs.undirected.UnDirectedGraph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,44 +18,44 @@ public class PrimsMST<V> implements MST<V>{
 
     private WeightedGraph<V> graph;
 
-    private Queue<UnDirectedGraph.Edge<V>> priorityQueue;
+    private Queue<Edge<V>> priorityQueue;
 
     public PrimsMST(WeightedGraph<V> graph) {
         this.graph = graph;
-        Comparator<UnDirectedGraph.Edge<V>> edgeWeightComparator = Comparator.comparingInt(UnDirectedGraph.Edge::getWeight);
+        Comparator<Edge<V>> edgeWeightComparator = Comparator.comparingInt(Edge::getWeight);
         priorityQueue = new PriorityQueue<>(edgeWeightComparator);
 
     }
 
     @Override
-    public List<UnDirectedGraph.Edge<V>> minimumSpanningTree() throws BadInputException {
+    public List<Edge<V>> minimumSpanningTree() throws BadInputException {
 
         emptyCheck();
 
-        List<UnDirectedGraph.Edge<V>> result = new ArrayList<>();
+        List<Edge<V>> result = new ArrayList<>();
 
-        Set<UnDirectedGraph.Vertex<V>> unvisited = new HashSet<>();
+        Set<Vertex<V>> unvisited = new HashSet<>();
 
         //add all the vertex to un-visited set
         this.graph.getAllVertexes().forEach( (key,value) -> unvisited.add(value));
 
         //some random vertex to start the algo
-        UnDirectedGraph.Vertex<V> start = this.graph.getAllVertexes().entrySet().iterator().next().getValue();
+        Vertex<V> start = this.graph.getAllVertexes().entrySet().iterator().next().getValue();
 
         unvisited.remove(start);
-        UnDirectedGraph.Vertex<V> vertex = start;
+        Vertex<V> vertex = start;
         while (!unvisited.isEmpty()){
             //iterate through all the neighbouring edges of the current vertex
             //and add the edge to queue if it not visited
-            for (UnDirectedGraph.Edge<V> edge : vertex.getEdges()) {
+            for (Edge<V> edge : vertex.getEdges()) {
                 if(unvisited.contains(edge.getVertex2())){
                     priorityQueue.add(edge);
                 }
             }
 
-            UnDirectedGraph.Edge<V> edge = priorityQueue.remove();
+            Edge<V> edge = priorityQueue.remove();
             //Get the Correct to vertex
-            UnDirectedGraph.Vertex<V> toVertex = getEdgeOtherVertex(edge, vertex);
+            Vertex<V> toVertex = getEdgeOtherVertex(edge, vertex);
             //if it not already added to path, then only add it
             if(unvisited.contains(toVertex))
                  result.add(edge);
@@ -74,7 +75,7 @@ public class PrimsMST<V> implements MST<V>{
     /**
      * We made this method because, since same vertex be to vertex in an edge.
      */
-    private UnDirectedGraph.Vertex<V> getEdgeOtherVertex(UnDirectedGraph.Edge<V> edge, UnDirectedGraph.Vertex<V> vertex) {
+    private Vertex<V> getEdgeOtherVertex(Edge<V> edge, Vertex<V> vertex) {
         return edge.getVertex1().equals(vertex) ? edge.getVertex2() : edge.getVertex1();
 
     }

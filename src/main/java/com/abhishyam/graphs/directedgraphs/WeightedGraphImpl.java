@@ -1,7 +1,8 @@
 package com.abhishyam.graphs.directedgraphs;
 
+import com.abhishyam.graphs.Edge;
+import com.abhishyam.graphs.Vertex;
 import com.abhishyam.graphs.WeightedGraph;
-import com.abhishyam.graphs.undirected.UnDirectedGraph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,68 +14,63 @@ import java.util.*;
 public class WeightedGraphImpl<V> implements WeightedGraph<V>{
     private static final Logger logger = LoggerFactory.getLogger(WeightedGraphImpl.class);
 
-    private Map<V,List<AdjacentNode<V>>> graph;
+    private Map<V,List<Edge<V>>> graph;
+    private List<Edge<V>> allEdges;
+    private Map<V,Vertex<V>> allVertexes;
 
     public WeightedGraphImpl() {
+
         graph = new LinkedHashMap<>();
+        allEdges = new ArrayList<>();
+        allVertexes = new HashMap<>();
     }
 
     @Override
     public void addEdge(V from,V to, int weight){
-        AdjacentNode<V> adjacentNode = new AdjacentNode<>(weight,to);
-        List<AdjacentNode<V>> adjacentNodeList = graph.get(from);
+
+        Vertex<V> vertex1 = allVertexes.computeIfAbsent(from, key->{
+            Vertex<V> vertex = new Vertex<>(from);
+            allVertexes.put(from,vertex);
+            return vertex;
+        });
+
+        Vertex<V> vertex2 = allVertexes.computeIfAbsent(to, key->{
+            Vertex<V> vertex = new Vertex<>(to);
+            allVertexes.put(to,vertex);
+            return vertex;
+        });
+        Edge<V> edge = new Edge<>(vertex1, vertex2, weight);
+        allEdges.add(edge);
+
+        List<Edge<V>> adjacentNodeList = graph.get(from);
         if(adjacentNodeList == null){
             adjacentNodeList = new ArrayList<>();
         }
-        adjacentNodeList.add(adjacentNode);
+        adjacentNodeList.add(edge);
         graph.put(from,adjacentNodeList);
         graph.computeIfAbsent(to, k -> new ArrayList<>());
     }
 
     @Override
     public void printGraph(){
-        for (Map.Entry<V, List<AdjacentNode<V>>> entity : graph.entrySet()) {
+        for (Map.Entry<V, List<Edge<V>>> entity : graph.entrySet()) {
             logger.info("{}-->{}",entity.getKey(),entity.getValue());
         }
 
     }
 
-    public Map<V, List<AdjacentNode<V>>> getGraph() {
+    public Map<V, List<Edge<V>>> getGraph() {
         return graph;
     }
 
     @Override
-    public List<UnDirectedGraph.Edge<V>> getAllEdges() {
-        return new ArrayList<>();
+    public List<Edge<V>> getAllEdges() {
+        return allEdges;
     }
 
     @Override
-    public Map<V, UnDirectedGraph.Vertex<V>> getAllVertexes() {
-        return new HashMap<>();
+    public Map<V, Vertex<V>> getAllVertexes() {
+        return allVertexes;
     }
 
-    public static class AdjacentNode<V>{
-        int weight;
-        V v;
-
-        AdjacentNode(int weight, V v) {
-            this.weight = weight;
-            this.v = v;
-        }
-
-        public int getWeight() {
-            return weight;
-        }
-
-        public V getV() {
-            return v;
-        }
-
-        @Override
-        public String toString() {
-            return "{"+v +
-                    "," + weight +
-                    '}';
-        }
-    }
 }

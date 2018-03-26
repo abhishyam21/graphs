@@ -13,7 +13,7 @@ public class RouteBetweenNodesImpl<V> extends AdjacencyListGraphImpl<V>{
         super(comparator);
     }
     public ArrayList<V> routeBwNodes(V from, V to){
-        ArrayList<V> route = new ArrayList<V>();
+        ArrayList<V> route = new ArrayList<>();
         if(from == to) return route;
         List<V> adjacentList = this.graph.get(from);
         if(adjacentList.size() ==0) return route;

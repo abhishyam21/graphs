@@ -1,10 +1,12 @@
 package com.abhishyam.graphs.mst;
 
 import com.abhishyam.exceptions.BadInputException;
+import com.abhishyam.graphs.Edge;
 import com.abhishyam.graphs.TestBase;
-import com.abhishyam.graphs.undirected.UnDirectedGraph;
+import com.abhishyam.graphs.Vertex;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -16,10 +18,10 @@ import java.util.List;
 public class MSTTest extends TestBase{
 
     private MST<Integer> mst;
-    private List<UnDirectedGraph.Edge<Integer>> expected1;
-    private List<UnDirectedGraph.Edge<Integer>> expected2;
+    private List<Edge<Integer>> expected1;
+    private List<Edge<Integer>> expected2;
 
-    private static int compare(UnDirectedGraph.Edge<Integer> edge1, UnDirectedGraph.Edge<Integer> edge2) {
+    private static int compare(Edge<Integer> edge1, Edge<Integer> edge2) {
         int val = edge1.getVertex1().getData().compareTo(edge2.getVertex1().getData());
         if (val != 0) return val;
         val = edge1.getVertex2().getData().compareTo(edge2.getVertex2().getData());
@@ -54,7 +56,7 @@ public class MSTTest extends TestBase{
     @Test()
     public void testMSTii() throws BadInputException {
         mst = new KruskalMST<>(weightedGraph2);
-        List<UnDirectedGraph.Edge<Integer>> actual = mst.minimumSpanningTree();
+        List<Edge<Integer>> actual = mst.minimumSpanningTree();
         actual.sort(MSTTest::compare);
         expected1.sort(MSTTest::compare);
         Assert.assertEquals(expected1,actual);
@@ -64,7 +66,7 @@ public class MSTTest extends TestBase{
     @Test()
     public void testMSTiii() throws BadInputException {
         mst = new KruskalMST<>(weightedGraph3);
-        List<UnDirectedGraph.Edge<Integer>> actual = mst.minimumSpanningTree();
+        List<Edge<Integer>> actual = mst.minimumSpanningTree();
         actual.sort(MSTTest::compare);
         expected2.sort(MSTTest::compare);
         Assert.assertEquals(expected2,actual);
@@ -81,7 +83,7 @@ public class MSTTest extends TestBase{
     @Test()
     public void testMSTV() throws BadInputException {
         mst = new PrimsMST<>(weightedGraph2);
-        List<UnDirectedGraph.Edge<Integer>> actual = mst.minimumSpanningTree();
+        List<Edge<Integer>> actual = mst.minimumSpanningTree();
         actual.sort(MSTTest::compare);
         expected1.sort(MSTTest::compare);
         Assert.assertEquals(expected1,actual);
@@ -90,17 +92,33 @@ public class MSTTest extends TestBase{
     @Test()
     public void testMSTVi() throws BadInputException {
         mst = new PrimsMST<>(weightedGraph3);
-        List<UnDirectedGraph.Edge<Integer>> actual = mst.minimumSpanningTree();
+        List<Edge<Integer>> actual = mst.minimumSpanningTree();
         actual.sort(MSTTest::compare);
         expected2.sort(MSTTest::compare);
         Assert.assertEquals(expected2,actual);
 
     }
 
-    private UnDirectedGraph.Edge<Integer> createEdge(int data1, int data2, int weight){
-        UnDirectedGraph.Vertex<Integer> vertex1 = new UnDirectedGraph.Vertex<>(data1);
-        UnDirectedGraph.Vertex<Integer> vertex2 = new UnDirectedGraph.Vertex<>(data2);
-        return new UnDirectedGraph.Edge<>(vertex1,vertex2,weight);
+    @Test(expected = BadInputException.class)
+    public void testMSTVii() throws BadInputException {
+        mst = new BoruvkasMST<>(null);
+        mst.minimumSpanningTree();
+    }
+
+    @Ignore
+    @Test()
+    public void testMSTViii() throws BadInputException {
+        mst = new BoruvkasMST<>(weightedGraph2);
+        List<Edge<Integer>> actual = mst.minimumSpanningTree();
+        actual.sort(MSTTest::compare);
+        expected1.sort(MSTTest::compare);
+        Assert.assertEquals(expected1,actual);
+    }
+
+    private Edge<Integer> createEdge(int data1, int data2, int weight){
+        Vertex<Integer> vertex1 = new Vertex<>(data1);
+        Vertex<Integer> vertex2 = new Vertex<>(data2);
+        return new Edge<>(vertex1,vertex2,weight);
     }
 
 

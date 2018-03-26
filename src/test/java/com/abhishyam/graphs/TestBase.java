@@ -20,6 +20,8 @@ public class TestBase {
     protected static WeightedGraph<String> weightedGraph1 = new WeightedGraphImpl<>();
     protected static WeightedGraph<Integer> weightedGraph2 = new UnDirectedGraph<>();
     protected static WeightedGraph<Integer> weightedGraph3 = new UnDirectedGraph<>();
+    protected static WeightedGraph<Integer> weightedGraph4 = new UnDirectedGraph<>();
+    protected static WeightedGraph<Integer> weightedGraph5 = new WeightedGraphImpl<>();
 
     static {
         graph1.addEdge(0,1);graph1.addEdge(0,2);
@@ -117,5 +119,31 @@ public class TestBase {
         weightedGraph3.addEdge(0, 3, 5);
         weightedGraph3.addEdge(1, 3, 15);
         weightedGraph3.addEdge(2, 3, 5);
+
+
+        weightedGraph4.addEdge(0, 1, 4);
+        weightedGraph4.addEdge(0, 7, 8);
+        weightedGraph4.addEdge(1, 2, 8);
+        weightedGraph4.addEdge(1, 7, 11);
+        weightedGraph4.addEdge(2, 3, 7);
+        weightedGraph4.addEdge(2, 8, 2);
+        weightedGraph4.addEdge(2, 5, 4);
+        weightedGraph4.addEdge(3, 4, 9);
+        weightedGraph4.addEdge(3, 5, 14);
+        weightedGraph4.addEdge(4, 5, 10);
+        weightedGraph4.addEdge(5, 6, 2);
+        weightedGraph4.addEdge(6, 7, 1);
+        weightedGraph4.addEdge(6, 8, 6);
+        weightedGraph4.addEdge(7, 8, 7);
+
+        weightedGraph5.addEdge(0, 1, -1);
+        weightedGraph5.addEdge(0, 2, 4);
+        weightedGraph5.addEdge(1, 2, 3);
+        weightedGraph5.addEdge(1, 3, 2);
+        weightedGraph5.addEdge(1, 4, 2);
+        weightedGraph5.addEdge(3, 2, 5);
+        weightedGraph5.addEdge(3, 1, 1);
+        weightedGraph5.addEdge(4, 3, -3);
+
     }
 }

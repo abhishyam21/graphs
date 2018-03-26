@@ -1,7 +1,7 @@
 package com.abhishyam.graphs.indegree;
 
+import com.abhishyam.graphs.Edge;
 import com.abhishyam.graphs.WeightedGraph;
-import com.abhishyam.graphs.directedgraphs.WeightedGraphImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,14 +31,14 @@ public class WeightedInDegreeImpl<V> implements InDegree<V> {
     }
 
     private void inDegreeUtil(Map<V, Integer> result) {
-        for (Map.Entry<V, List<WeightedGraphImpl.AdjacentNode<V>>> entry : graph.getGraph().entrySet()) {
+        for (Map.Entry<V, List<Edge<V>>> entry : graph.getGraph().entrySet()) {
             result.put(entry.getKey(),0);
         }
 
-        for (Map.Entry<V, List<WeightedGraphImpl.AdjacentNode<V>>> entry : graph.getGraph().entrySet()) {
-            for (WeightedGraphImpl.AdjacentNode<V> adjacentNode : entry.getValue()) {
-                Integer count = result.get(adjacentNode.getV());
-                result.put(adjacentNode.getV(),++count);
+        for (Map.Entry<V, List<Edge<V>>> entry : graph.getGraph().entrySet()) {
+            for (Edge<V> adjacentNode : entry.getValue()) {
+                Integer count = result.get(adjacentNode.getVertex2().getData());
+                result.put(adjacentNode.getVertex2().getData(),++count);
             }
         }
 

@@ -2,8 +2,8 @@ package com.abhishyam.graphs.mst;
 
 import com.abhishyam.disjointsets.DisjointSet;
 import com.abhishyam.exceptions.BadInputException;
+import com.abhishyam.graphs.Edge;
 import com.abhishyam.graphs.WeightedGraph;
-import com.abhishyam.graphs.undirected.UnDirectedGraph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,19 +30,19 @@ public class KruskalMST<V> implements MST<V>{
 
     private WeightedGraph<V> graph;
 
-    private Comparator<UnDirectedGraph.Edge<V>> edgeWeightComparator;
+    private Comparator<Edge<V>> edgeWeightComparator;
 
     public KruskalMST(WeightedGraph<V> graph) {
         this.graph = graph;
-       edgeWeightComparator = Comparator.comparingInt(UnDirectedGraph.Edge::getWeight);
+       edgeWeightComparator = Comparator.comparingInt(Edge::getWeight);
     }
 
 
     @Override
-    public List<UnDirectedGraph.Edge<V>> minimumSpanningTree() throws BadInputException {
+    public List<Edge<V>> minimumSpanningTree() throws BadInputException {
         emptyCheck();
         //sort the all edges based on weight
-        List<UnDirectedGraph.Edge<V>> allEdges = graph.getAllEdges();
+        List<Edge<V>> allEdges = graph.getAllEdges();
         allEdges.sort(edgeWeightComparator);
         //to check if cycle exists
         DisjointSet<V> disjointSet = new DisjointSet<>();
@@ -50,9 +50,9 @@ public class KruskalMST<V> implements MST<V>{
         //add all the edges to disjoint sets
         graph.getAllVertexes().keySet().forEach(disjointSet::makeSet);
 
-        List<UnDirectedGraph.Edge<V>> result = new ArrayList<>();
+        List<Edge<V>> result = new ArrayList<>();
 
-        for (UnDirectedGraph.Edge<V> edge : allEdges) {
+        for (Edge<V> edge : allEdges) {
             V parent1 = disjointSet.findSet(edge.getVertex1().getData());
             V parent2 = disjointSet.findSet(edge.getVertex2().getData());
 

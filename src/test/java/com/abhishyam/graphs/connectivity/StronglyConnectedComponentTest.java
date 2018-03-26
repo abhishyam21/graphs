@@ -18,10 +18,8 @@ public class StronglyConnectedComponentTest extends TestBase{
         expected.add(new HashSet<>(Arrays.asList("A","B","C")));
         expected.add(new HashSet<>(Arrays.asList("D","E","F")));
         Assert.assertEquals(actual,expected);
-        actual.forEach(System.out::println);
         StronglyConnectedComponent<Integer> component1 = new StronglyConnectedComponent<>(graph8);
         List<Set<Integer>> actual1 = component1.connectedComponent();
-        actual1.forEach(System.out::println);
         List<Set<Integer>> expected1 = new ArrayList<>();
         expected1.add(new HashSet<>(Arrays.asList(0,1,2)));
         expected1.add(new HashSet<>(Collections.singletonList(3)));
