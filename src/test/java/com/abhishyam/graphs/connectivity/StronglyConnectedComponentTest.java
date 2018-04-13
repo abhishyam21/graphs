@@ -1,5 +1,6 @@
 package com.abhishyam.graphs.connectivity;
 
+import com.abhishyam.exceptions.BadInputException;
 import com.abhishyam.graphs.TestBase;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,7 +10,7 @@ import java.util.*;
 public class StronglyConnectedComponentTest extends TestBase{
 
     @Test
-    public void testGetDfsOfGraph(){
+    public void testGetDfsOfGraph() throws BadInputException {
         StronglyConnectedComponent<String> component = new StronglyConnectedComponent<>(graph7);
         List<Set<String>> actual = component.connectedComponent();
         List<Set<String>> expected = new ArrayList<>();

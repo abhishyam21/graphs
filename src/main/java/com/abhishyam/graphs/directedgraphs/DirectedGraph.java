@@ -1,5 +1,6 @@
 package com.abhishyam.graphs.directedgraphs;
 
+import com.abhishyam.exceptions.BadInputException;
 import com.abhishyam.graphs.Graph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,15 @@ public class DirectedGraph<V> implements Graph<V> {
      * Add an edge to graph
      */
     @Override
-    public void addEdge(V from, V to){
+    public void addEdge(V from, V to) throws BadInputException {
+        if(from == null){
+            logger.error("From Can't be null");
+            throw new BadInputException("From Can't be null");
+        }
+        if(to == null){
+            logger.error("To Can't be null");
+            throw new BadInputException("To Can't be null");
+        }
         List<V> adjacentNodes = this.graph.get(from);
         if(adjacentNodes == null){
             adjacentNodes = new ArrayList<>();

@@ -1,5 +1,7 @@
 package com.abhishyam.graphs;
 
+import com.abhishyam.exceptions.BadInputException;
+
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +14,7 @@ import java.util.Map;
  * @param <V>
  */
 public interface Graph<V> {
-    void addEdge(V from, V to);
+    void addEdge(V from, V to) throws BadInputException;
     void printGraph();
     Map<V, List<V>> getGraph();
 }

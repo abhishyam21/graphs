@@ -38,9 +38,9 @@ public class AllTopologicalSortsTest extends TestBase{
 
         AllTopologicalSorts<String> allTopologicalSorts1 = new AllTopologicalSorts<>();
         List<List<String>> actual1 = allTopologicalSorts1.topSort(graph3);
-        actual1.forEach(System.out::println);
+      //  actual1.forEach(System.out::println);
 
         actual1 = allTopologicalSorts1.topSort(graph6);
-        actual1.forEach(System.out::println);
+        //actual1.forEach(System.out::println);
     }
 }

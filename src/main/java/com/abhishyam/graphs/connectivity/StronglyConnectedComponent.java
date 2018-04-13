@@ -1,41 +1,47 @@
 package com.abhishyam.graphs.connectivity;
 
+import com.abhishyam.exceptions.BadInputException;
 import com.abhishyam.graphs.Graph;
 import com.abhishyam.graphs.directedgraphs.DirectedGraph;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 /**
  * This class will find out the strongly connected
  * components in a graph.
- *
+ * <p>
  * Strongly connected component means, if we are able to
  * connect each vertex from one of the vertex's in that component
  * in that graph.
- *
+ * <p>
  * Algorithm:
  * 1). find out the dfs of the given graph in finish time in decreasing order
  * 2). Reverse the graph
  * 3). Do dfs of the reversed graph by removing the elements in
- *     from list above dfs order.
+ * from list above dfs order.
  * Links:
  * https://www.youtube.com/watch?v=RpgcYiky7uw
  * https://www.geeksforgeeks.org/strongly-connected-components/
- *
  */
 public class StronglyConnectedComponent<V> {
-
+    private static final Logger logger = LoggerFactory.getLogger(StronglyConnectedComponent.class);
     private Graph<V> graph;
 
     StronglyConnectedComponent(Graph<V> graph) {
         this.graph = graph;
     }
 
-    public List<Set<V>> connectedComponent(){
+     List<Set<V>> connectedComponent() throws BadInputException {
+        if(graph == null){
+            logger.error("Graph is Null");
+            throw new BadInputException("Graph is Null");
+        }
         Deque<V> dfsOfGraph = getDfsOfGraph();
         Graph<V> reversedGraph = reverseGraph();
-        reversedGraph.printGraph();
-        return getStrongConCompo(dfsOfGraph,reversedGraph);
+        //reversedGraph.printGraph();
+        return getStrongConCompo(dfsOfGraph, reversedGraph);
 
     }
 
@@ -45,7 +51,7 @@ public class StronglyConnectedComponent<V> {
      * time to finish in decreasing order
      * i.e. vertex which has ended 1st will be
      * added fist.
-     *
+     * <p>
      * This is reversing the graph
      */
     private Deque<V> getDfsOfGraph() {
@@ -53,8 +59,8 @@ public class StronglyConnectedComponent<V> {
         Deque<V> deque = new ArrayDeque<>();
 
         for (Map.Entry<V, List<V>> entry : graph.getGraph().entrySet()) {
-            if(!isVisited.contains(entry.getKey()))
-            sortOnFinishTime(entry.getKey(),isVisited,deque);
+            if (!isVisited.contains(entry.getKey()))
+                sortOnFinishTime(entry.getKey(), isVisited, deque);
         }
         return deque;
     }
@@ -63,8 +69,8 @@ public class StronglyConnectedComponent<V> {
         isVisited.add(node);
         List<V> adjacentNodes = graph.getGraph().get(node);
         for (V adjacentNode : adjacentNodes) {
-            if(!isVisited.contains(adjacentNode))
-                sortOnFinishTime(adjacentNode,isVisited,deque);
+            if (!isVisited.contains(adjacentNode))
+                sortOnFinishTime(adjacentNode, isVisited, deque);
         }
         deque.add(node);
     }
@@ -73,11 +79,11 @@ public class StronglyConnectedComponent<V> {
     private List<Set<V>> getStrongConCompo(Deque<V> dfsOfGraph, Graph<V> reversedGraph) {
         Set<V> isVisited = new HashSet<>();
         List<Set<V>> result = new ArrayList<>();
-        while (!dfsOfGraph.isEmpty()){
+        while (!dfsOfGraph.isEmpty()) {
             V node = dfsOfGraph.removeLast();
-            if(!isVisited.contains(node)){
+            if (!isVisited.contains(node)) {
                 Set<V> component = new HashSet<>();
-                dfsUtil(node,reversedGraph,component,isVisited);
+                dfsUtil(node, reversedGraph, component, isVisited);
                 result.add(component);
             }
         }
@@ -89,7 +95,7 @@ public class StronglyConnectedComponent<V> {
         isVisited.add(node);
         component.add(node);
         for (V v : reversedGraph.getGraph().get(node)) {
-            if(!isVisited.contains(v))
+            if (!isVisited.contains(v))
                 dfsUtil(v, reversedGraph, component, isVisited);
         }
 
@@ -100,16 +106,16 @@ public class StronglyConnectedComponent<V> {
      * method to reverse the whole graph.
      * This method will re-direct the
      * directed edge.
+     *
      * @return reversed graph
      */
-    private Graph<V> reverseGraph() {
+    private Graph<V> reverseGraph() throws BadInputException {
         Graph<V> reverseGraph = new DirectedGraph<>();
         for (Map.Entry<V, List<V>> entry : graph.getGraph().entrySet()) {
             for (V adjacentNode : entry.getValue()) {
-                reverseGraph.addEdge(adjacentNode,entry.getKey());
+                reverseGraph.addEdge(adjacentNode, entry.getKey());
             }
         }
-
         return reverseGraph;
     }
 }
