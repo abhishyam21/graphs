@@ -25,9 +25,15 @@ public class TestBase {
     protected static WeightedGraph<Integer> weightedGraph4 = new UnDirectedGraph<>();
     protected static WeightedGraph<Integer> weightedGraph5 = new WeightedGraphImpl<>();
     protected static WeightedGraph<Integer> weightedGraph6 = new UnDirectedGraph<>();
+
     //https://www.youtube.com/watch?v=2kREIkF9UAs&t=419s
     protected static WeightedGraph<String> weightedGraph7 = new UnDirectedGraph<>();
     protected static WeightedGraph<Integer> weightedGraph8 = new UnDirectedGraph<>();
+
+    //https://www.geeksforgeeks.org/articulation-points-or-cut-vertices-in-a-graph/
+    protected static WeightedGraph<Integer> weightedGraph9 = new UnDirectedGraph<>();
+    protected static WeightedGraph<Integer> weightedGraph10 = new UnDirectedGraph<>();
+    protected static WeightedGraph<Integer> weightedGraph11 = new UnDirectedGraph<>();
 
     static {
         try {
@@ -221,5 +227,24 @@ public class TestBase {
         weightedGraph8.addEdge(7, 9,1);
         weightedGraph8.addEdge(9, 1,10);
         weightedGraph8.addEdge(8, 1,10);
+
+        weightedGraph9.addEdge(1, 0,1);
+        weightedGraph9.addEdge(0, 2,1);
+        weightedGraph9.addEdge(2, 1,1);
+        weightedGraph9.addEdge(0, 3,1);
+        weightedGraph9.addEdge(3, 4,1);
+
+        weightedGraph10.addEdge(0, 1,1);
+        weightedGraph10.addEdge(1, 2,1);
+        weightedGraph10.addEdge(2, 3,1);
+
+        weightedGraph11.addEdge(0, 1,1);
+        weightedGraph11.addEdge(1, 2,1);
+        weightedGraph11.addEdge(2, 0,1);
+        weightedGraph11.addEdge(1, 3,1);
+        weightedGraph11.addEdge(1, 4,1);
+        weightedGraph11.addEdge(1, 6,1);
+        weightedGraph11.addEdge(3, 5,1);
+        weightedGraph11.addEdge(4, 5,1);
     }
 }

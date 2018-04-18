@@ -33,6 +33,14 @@ import java.util.Set;
  * APPROACH 2: Using DFS Tree
  * Do DFS traversal of the given graph in tree fashion.
  * The tree construction is based on traversal time based.
+ *
+ *  We can say a vertex is articulation point on 2 conditions
+ *  1). If it is root node and it has 2 or more distinct nodes
+ *  2). if he visited time of current node is less than the
+ *  adjacent nodes lowest time.
+ *
+ *  So we gonna calculate the above points for all the nodes
+ *  and add them to the articulation list.
  * <p>
  * Created by Abhishyam on 18-Apr,2018
  */
