@@ -24,6 +24,10 @@ public class TestBase {
     protected static WeightedGraph<Integer> weightedGraph3 = new UnDirectedGraph<>();
     protected static WeightedGraph<Integer> weightedGraph4 = new UnDirectedGraph<>();
     protected static WeightedGraph<Integer> weightedGraph5 = new WeightedGraphImpl<>();
+    protected static WeightedGraph<Integer> weightedGraph6 = new UnDirectedGraph<>();
+    //https://www.youtube.com/watch?v=2kREIkF9UAs&t=419s
+    protected static WeightedGraph<String> weightedGraph7 = new UnDirectedGraph<>();
+    protected static WeightedGraph<Integer> weightedGraph8 = new UnDirectedGraph<>();
 
     static {
         try {
@@ -183,5 +187,39 @@ public class TestBase {
         weightedGraph5.addEdge(3, 1, 1);
         weightedGraph5.addEdge(4, 3, -3);
 
+        weightedGraph6.addEdge(1, 2,1);
+        weightedGraph6.addEdge(2, 3,1);
+        weightedGraph6.addEdge(1, 3,1);
+        weightedGraph6.addEdge(1, 4,1);
+        weightedGraph6.addEdge(4, 5,1);
+        weightedGraph6.addEdge(5, 6,1);
+        weightedGraph6.addEdge(6, 7,1);
+        weightedGraph6.addEdge(7, 5,1);
+        weightedGraph6.addEdge(6, 8,1);
+
+
+        weightedGraph7.addEdge("A", "B",1);
+        weightedGraph7.addEdge("A", "C",1);
+        weightedGraph7.addEdge("C", "D",1);
+        weightedGraph7.addEdge("D", "E",1);
+        weightedGraph7.addEdge("E", "G",1);
+        weightedGraph7.addEdge("G", "F",1);
+        weightedGraph7.addEdge("E", "F",1);
+        weightedGraph7.addEdge("F", "H",1);
+        weightedGraph7.addEdge("B", "C",1);
+
+        weightedGraph8.addEdge(0, 1,1);
+        weightedGraph8.addEdge(0, 2,1);
+        weightedGraph8.addEdge(0, 3,1);
+        weightedGraph8.addEdge(0, 4,1);
+        weightedGraph8.addEdge(4, 2,1);
+        weightedGraph8.addEdge(3, 5,1);
+        weightedGraph8.addEdge(4, 6,1);
+        weightedGraph8.addEdge(6, 3,1);
+        weightedGraph8.addEdge(6, 7,1);
+        weightedGraph8.addEdge(6, 8,1);
+        weightedGraph8.addEdge(7, 9,1);
+        weightedGraph8.addEdge(9, 1,10);
+        weightedGraph8.addEdge(8, 1,10);
     }
 }
