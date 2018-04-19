@@ -52,5 +52,11 @@ public  class Vertex<V>{
             return getData() != null ? getData().hashCode() : 0;
         }
 
-
-   }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("data=").append(data);
+        sb.append('}');
+        return sb.toString();
+    }
+}

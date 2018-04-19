@@ -2,8 +2,6 @@ package com.abhishyam.graphs.connectivity;
 
 import com.abhishyam.graphs.Vertex;
 import com.abhishyam.graphs.WeightedGraph;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -41,12 +39,14 @@ import java.util.Set;
  *
  *  So we gonna calculate the above points for all the nodes
  *  and add them to the articulation list.
- * <p>
+ *
+ * BiConnected graph:
+ * If a graph is not having any articulation points then
+ * that graph is BiConnected graph.
+ *
  * Created by Abhishyam on 18-Apr,2018
  */
 public class ArticulationPoint<V> {
-
-    private static final Logger logger = LoggerFactory.getLogger(ArticulationPoint.class);
 
     private WeightedGraph<V> graph;
 
@@ -102,6 +102,7 @@ public class ArticulationPoint<V> {
             }else { //this condition indicates the back-edge case in graph
                 //in the current input graph edge from B->C and G->E are back-edges
                 //which will fall under this condition.
+                //so if it is back-edge, then update the low time with min value
                 lowTime.put(vertex, Math.min(lowTime.get(vertex), visitedTime.get(adjacentVertex)));
             }
 
