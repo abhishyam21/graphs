@@ -35,6 +35,15 @@ public class TestBase {
     protected static WeightedGraph<Integer> weightedGraph10 = new UnDirectedGraph<>();
     protected static WeightedGraph<Integer> weightedGraph11 = new UnDirectedGraph<>();
 
+    protected static WeightedGraph<Integer> weightedGraph12 = new UnDirectedGraph<>();
+
+    //https://www.geeksforgeeks.org/eulerian-path-and-circuit/
+    protected static WeightedGraph<Integer> weightedGraph13 = new UnDirectedGraph<>();
+    protected static WeightedGraph<Integer> weightedGraph14 = new UnDirectedGraph<>();
+    protected static WeightedGraph<Integer> weightedGraph15 = new UnDirectedGraph<>();
+    protected static WeightedGraph<Integer> weightedGraph16 = new UnDirectedGraph<>();
+
+
     static {
         try {
             graph1.addEdge(0, 1);
@@ -246,5 +255,33 @@ public class TestBase {
         weightedGraph11.addEdge(1, 6,1);
         weightedGraph11.addEdge(3, 5,1);
         weightedGraph11.addEdge(4, 5,1);
+
+        weightedGraph12.addEdge(0, 1, 1);
+        weightedGraph12.addEdge(1, 2, 1);
+        weightedGraph12.addEdge(4, 3, 1);
+
+        weightedGraph13.addEdge(1, 0, 1);
+        weightedGraph13.addEdge(0, 2, 1);
+        weightedGraph13.addEdge(2, 1, 1);
+        weightedGraph13.addEdge(0, 3, 1);
+        weightedGraph13.addEdge(3, 4, 1);
+        weightedGraph13.addEdge(4, 0, 1);
+
+        weightedGraph14.addEdge(1, 0, 1);
+        weightedGraph14.addEdge(0, 2, 1);
+        weightedGraph14.addEdge(2, 1, 1);
+        weightedGraph14.addEdge(0, 3, 1);
+        weightedGraph14.addEdge(3, 4, 1);
+
+        weightedGraph15.addEdge(1, 0, 1);
+        weightedGraph15.addEdge(0, 2, 1);
+        weightedGraph15.addEdge(2, 1, 1);
+        weightedGraph15.addEdge(0, 3, 1);
+        weightedGraph15.addEdge(3, 4, 1);
+        weightedGraph15.addEdge(1, 3, 1);
+
+        weightedGraph16.addEdge(0, 1, 0);
+        weightedGraph16.addEdge(1, 2, 0);
+        weightedGraph16.addEdge(2, 0, 0);
     }
 }
