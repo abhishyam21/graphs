@@ -17,6 +17,7 @@ public class TestBase {
     protected static Graph<Integer> graph9 = new DirectedGraph<>();
     protected static Graph<Integer> graph10 = new DirectedGraph<>();
     protected static Graph<Integer> graph11 = new DirectedGraph<>();
+    protected static Graph<Integer> graph12 = new DirectedGraph<>();
 
 
     protected static WeightedGraph<String> weightedGraph1 = new WeightedGraphImpl<>();
@@ -144,6 +145,13 @@ public class TestBase {
             graph11.addEdge(3, 0);
             graph11.addEdge(2, 4);
             graph11.addEdge(4, 2);
+
+            graph12.addEdge(0, 1);
+            graph12.addEdge(0, 2);
+            graph12.addEdge(1, 2);
+            graph12.addEdge(2, 0);
+            graph12.addEdge(2, 3);
+            graph12.addEdge(3, 3);
         }catch (BadInputException e){
             //just eat don't add that edge
         }
@@ -260,12 +268,12 @@ public class TestBase {
         weightedGraph12.addEdge(1, 2, 1);
         weightedGraph12.addEdge(4, 3, 1);
 
-        weightedGraph13.addEdge(1, 0, 1);
-        weightedGraph13.addEdge(0, 2, 1);
-        weightedGraph13.addEdge(2, 1, 1);
-        weightedGraph13.addEdge(0, 3, 1);
-        weightedGraph13.addEdge(3, 4, 1);
-        weightedGraph13.addEdge(4, 0, 1);
+        weightedGraph13.addEdge(1, 0, -1);
+        weightedGraph13.addEdge(0, 2, -1);
+        weightedGraph13.addEdge(2, 1, -1);
+        weightedGraph13.addEdge(0, 3, -1);
+        weightedGraph13.addEdge(3, 4, -1);
+        weightedGraph13.addEdge(4, 0, -1);
 
         weightedGraph14.addEdge(1, 0, 1);
         weightedGraph14.addEdge(0, 2, 1);
